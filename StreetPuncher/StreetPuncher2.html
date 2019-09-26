@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StreetPuncher</title>
+	<link rel="stylesheet" type="text/css" href="StreetPuncher.css">
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type = "text/javascript"></script>
+</head>
+<body>
+<div id = "container">
+
+	<div class = "controls_l">
+		<div class = "character_selector">
+			<button class = "character_button_left" id = "ch_bu_ll">&larr;</button>
+			<button class = "character_button_right" id = "ch_bu_lr">&rarr;</button>
+		</div>
+		<div class = "character_screen"> Player 1:
+			<img hidden class = "character" id = "character_l" src = "Beauregard.jpg" alt = "Player 1">
+		</div>
+	</div>
+	<div class = "arena">
+		<img id = "arena_pic" src = "Background1.jpg" alt = "arena">
+	</div>
+	<div class = "controls_r">
+		<div class = "character_selector">
+			<button class = "character_button_left" id = "ch_bu_rl">&larr;</button>
+			<button class = "character_button_right" id = "ch_bu_rr">&rarr;</button>
+		</div>
+		<div class = "character_screen"> Player 2:
+			<img class = "character" id = "character_r" src = "Beauregard.jpg" alt = "Player 2">
+		</div>
+	</div>
+	<div class = "arena_selector">
+		<button class = "arena_button_left">&larr;</button>
+		<button id = "start_button"> Start</button>
+		<button class = "arena_button_right">&rarr;</button>
+	</div>
+
+</div>
+</body>
+<script type="text/javascript">
+//javascript below//
+let chars = ["Beauregard.jpg", "Caduceus.jpg", "Caleb.jpg", "Fjord.jpg", "Jester.jpg", "Mollymauk.jpg", "Nott.jpg", "Yasha.jpg"];
+let arenas = ["Background1.jpg", "Background2.jpg", "Background3.jpg", "Background4.jpg", "Background5.jpg", "Background6.jpg", "Background7.jpg"];
+let i = 0;
+function select(x){
+	console.log(x[i]);
+};
+
+function increaseI(x){
+	i += 1
+	if(i > x.length-1){
+		i = 0;
+	}
+	select(x);
+};
+
+function decreaseI(x){
+	i -= 1;
+	if(i < 0){
+		i = x.length-1;
+	}
+	select(x);
+};
+$(document).ready(function(){
+
+//j-query below//
+$("#start_button").click(function(){
+	$("img").css("opacity", "1");
+	});
+
+$("#ch_bu_ll").click(function(){
+	decreaseI(chars)
+	$("#character_l").attr("src", chars[i]);
+});
+
+$("#ch_bu_lr").click(function(){
+	increaseI(chars)
+	$("#character_l").attr("src", chars[i]);
+});
+
+$("#ch_bu_rl").click(function(){
+	decreaseI(chars)
+	$("#character_r").attr("src", chars[i]);
+});
+
+$("#ch_bu_rr").click(function(){
+	increaseI(chars);
+	$("#character_r").attr("src", chars[i]);
+});
+
+$(".arena_button_left").click(function(){
+	decreaseI(arenas);
+	$("#arena_pic").attr("src", arenas[i]);
+});
+
+$(".arena_button_right").click(function(){
+	increaseI(arenas);
+	$("#arena_pic").attr("src", arenas[i]);
+});
+
+});
+
+</script>
+
+</html>
